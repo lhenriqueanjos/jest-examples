@@ -37,6 +37,10 @@ obterDadosPokemon.mockImplementation((nome) => {
 });
 
 describe('Comparador de Pokémon', () => {
+  beforeEach(() => {
+    obterDadosPokemon.mockClear();
+  });
+
   it('a é maior que b', async () => {
     const a = 'pikachu';
     const b = 'eevee';
@@ -45,6 +49,7 @@ describe('Comparador de Pokémon', () => {
     const resultadoObtido = await compararAltura(a, b);
 
     expect(resultadoObtido).toBe(resultadoEsperado);
+    expect(obterDadosPokemon).toHaveBeenCalledTimes(2);
   });
 
   it('a é menor que b', async () => {
@@ -55,5 +60,6 @@ describe('Comparador de Pokémon', () => {
     const resultadoObtido = await compararAltura(a, b);
 
     expect(resultadoObtido).toBe(resultadoEsperado);
+    expect(obterDadosPokemon).toHaveBeenCalledTimes(2);
   });
 });
